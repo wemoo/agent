@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='WemooAgent',
     version='0.0.1',
-    description='Wemoo agent for picooc',
+    description='Aent for wemoo',
     url='https://github.com/wemoo/agent',
     author='Shawn Tien',
     author_email='hightian@gmail.com',
