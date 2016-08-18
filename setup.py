@@ -14,9 +14,8 @@ setup(
     install_requires=['simplejson', 'requests', 'pymongo', 'daemonize'],
     zip_safe=True,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 0.0.2 - Beta',
         'Environment :: Console',
-        'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Operating System :: MacOS :: MacOS X',
