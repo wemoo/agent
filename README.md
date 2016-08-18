@@ -1,2 +1,2 @@
-# Weemoo Agent
+# Weemo Agent
 Agent for wemoo.
