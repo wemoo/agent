@@ -68,7 +68,7 @@ class Task(object):
         # TODO: handle task run fail
         script = task.get('script', None)
         if script:
-            task['result'] = shell.exec_shell_script(script)
+            task['result'] = shell.exec_shell_script(script).decode('utf-8')
 
     def send_back_data(self):
         """
