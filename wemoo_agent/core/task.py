@@ -6,6 +6,7 @@ from bson.json_util import loads
 from wemoo_agent.network.request import http_get, http_patch
 from wemoo_agent.system import shell
 from wemoo_agent.common.util import save_obj, load_obj
+from wemoo_agent.config.config import config
 from multiprocessing.dummy import Pool as ThreadPool
 from time import time
 from time import sleep
@@ -45,7 +46,7 @@ class Task(object):
         end = time()
         print('duration: ', int(end - start))
 
-        if os.path.isfile(self.config.cache_file):
+        if os.path.isfile(self.config.cache_file) and config.debug:
             try:
                 self.unfinished_tasks = load_obj(self.config.cache_file)
                 save_obj([], self.config.cache_file)
@@ -87,7 +88,8 @@ class Task(object):
                 else:
                     self.unfinished_tasks.append(task)
 
-        save_obj(self.unfinished_tasks, self.config.cache_file)
+        if config.debug:
+            save_obj(self.unfinished_tasks, self.config.cache_file)
         print('len unfinished_tasks: ', len(self.unfinished_tasks))
         print('sent_back_result')
 
@@ -95,6 +97,5 @@ class Task(object):
         """
         Sleep for every loop
         """
-        sleep(3)
-        # sleep(self.config.interval)
-        print('sleep 3')
+        print('sleep for interval')
+        sleep(self.config.interval)
