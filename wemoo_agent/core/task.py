@@ -76,10 +76,9 @@ class Task(object):
         print('self.tasks length: ', len(self.tasks))
         while (len(self.tasks) > 0):
             task = self.tasks.pop()
-            data = {"_id": task['_id'], 'result': task['result']}
-            headers = {'Content-type': 'application/json'}
+            data = {"id": task['id'], 'result': task['result']}
             url = self.config.server + "/api/tasks"
-            response = http_patch(url, data, headers)
+            response = http_patch(url, data)
             if response is None:
                 self.unfinished_tasks.append(task)
             else:
