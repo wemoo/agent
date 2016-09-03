@@ -26,12 +26,16 @@ DESCRIPTION:
 
 
 def run():
-    # register device
-    if not login_or_register_host():
-        sys.exit("Regist failed.")
+    try:
+        # register device
+        if not login_or_register_host():
+            sys.exit("Regist failed.")
 
-    event = Eventloop(config)
-    event.event_loop()
+        event = Eventloop(config)
+        event.event_loop()
+    except Exception as e:
+        print('Run failed.')
+        traceback.print_exc()
 
 
 def main():
