@@ -66,9 +66,9 @@ class Task(object):
 
     def run_command(self, task):
         # TODO: handle task run fail
-        file = task.get('file', None)
-        if file:
-            task['result'] = shell.exec_shell_script(file)
+        script = task.get('script', None)
+        if script:
+            task['result'] = shell.exec_shell_script(script)
 
     def send_back_data(self):
         """
@@ -78,7 +78,7 @@ class Task(object):
         while (len(self.tasks) > 0):
             task = self.tasks.pop()
             data = {"id": task['id'], 'result': task['result']}
-            url = self.config.server + "/api/tasks"
+            url = self.config.server + '/api/tasks/' + task['id'] + '/exec'
             response = http_patch(url, data)
             if response is None:
                 self.unfinished_tasks.append(task)
