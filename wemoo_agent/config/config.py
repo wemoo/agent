@@ -27,7 +27,7 @@ class Config(object):
         return {
             'interval': self.interval,
             'pid_file': self.pid_file,
-            'server': self.pid_file,
+            'server': self.server,
             'cache_file': self.cache_file,
             'host_identity': self.host_identity,
             'debug': self.debug
