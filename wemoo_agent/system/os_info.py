@@ -3,13 +3,18 @@ import platform
 
 from wemoo_agent.system.shell import exec_shell_script
 
-
-def os_type():
-    return platform.system()
+uname = platform.uname()
+system = {'system': uname.system,
+          'node': uname.node,
+          'release': uname.release,
+          'version': uname.version,
+          'machine': uname.machine,
+          'processor': uname.processor,
+          'uuid': os_uuid()}
 
 
 def os_uuid():
-    os = os_type()
+    os = uname.system
     script = None
 
     if os == 'Linux':
@@ -21,15 +26,6 @@ def os_uuid():
         system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
         """
 
-    output = exec_shell_script(script)
-    if not output:
-        return None
-
-    return ''.join(output.split())
-
-
-def hostname():
-    script = r'hostname'
     output = exec_shell_script(script)
     if not output:
         return None
