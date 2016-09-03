@@ -5,6 +5,7 @@
 
 from time import sleep
 from wemoo_agent.core.task import Task
+from wemoo_agent.config.config import config
 
 
 class Eventloop(object):
@@ -18,4 +19,4 @@ class Eventloop(object):
             self.task.send_back_data()
             self.task.sleep()
             print('another loop')
-            sleep(1)
+            sleep(config.interval)
