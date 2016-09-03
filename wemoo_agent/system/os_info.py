@@ -14,11 +14,11 @@ def os_uuid():
 
     if os == 'Linux':
         script = r"""
-        dmidecode -t 4 | grep ID | sed 's/.*ID://;s/ //g' | head -n 1 | sha256sum | awk '{print $1}'
+        cat /etc/machine-id
         """
     elif os == 'Darwin':
         script = r"""
-        ioreg -rd1 -c IOPlatformExpertDevice| grep IOPlatformUUID| awk '{split($0, line, "\""); print line[4]}' | shasum -a 256 | awk '{print $1}'
+        system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
         """
 
     output = exec_shell_script(script)
