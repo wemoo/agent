@@ -32,12 +32,12 @@ class Task(object):
         start = time()
 
         res = http_get(request_tasks_url)
-        if res.status_code >= 400:
+        json = res.json()
+        if not json.get('success'):
             return
 
-        content = loads(res.text)
         try:
-            tasks = content.get('content').get('tasks', [])
+            tasks = json.get('content').get('tasks', [])
             self.tasks.extend(tasks)
         except:
             return
